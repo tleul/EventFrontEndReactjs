@@ -12,13 +12,7 @@ const Navbar = ({ loaduser, isAuthenticated, logoutuser, user }) => {
 		<>
 			<nav className='navbar navbar-expand-lg navbar-light  bg-primary'>
 				<Link className='navbar-brand' to='/'>
-					<img
-						className='bg-primary'
-						src='/logo.png'
-						alt=''
-						width='100'
-						height='100'
-					/>{' '}
+		
 					Event Manager
 				</Link>
 				<button
