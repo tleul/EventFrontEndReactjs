@@ -1,5 +1,6 @@
 import API from '../../services/api';
 import setAuthToken from '../../services/setAuthToken';
+import { toast } from 'react-toastify';
 import {
 	LOGINSUCCESS,
 	LOGINFAIL,
@@ -21,8 +22,14 @@ export const registeruser = (user, admin) => async (dispatch) => {
 		localStorage.setItem('token', response.headers['x-auth-user']);
 
 		dispatch({ type: REGISTERSUCCESS, payload: response.data });
+		toast('You have been Registered Succesfuly', {
+			preventDuplicate: true,
+		});
 	} catch (error) {
-		console.log(error);
+		console.log(error.response.data.msg);
+		toast(error.response.data.msg, {
+			preventDuplicate: true,
+		});
 	}
 };
 
