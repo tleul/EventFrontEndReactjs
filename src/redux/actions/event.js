@@ -46,7 +46,7 @@ export const addevent = (body) => async (dispatch) => {
 			},
 		};
 		const response = await API.post(
-			'http://localhost:8000/api/event',
+			'/event',
 			body,
 		);
 		return response.status === 200;
@@ -63,7 +63,7 @@ export const updateevent = (body, id) => async (dispatch) => {
 			},
 		};
 		const response = await API.put(
-			'http://localhost:8000/api/event/' + id,
+			'/event/' + id,
 			body,
 		);
 		return response.status === 200;

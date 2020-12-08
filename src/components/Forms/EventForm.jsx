@@ -97,7 +97,7 @@ class EventForm extends React.Component {
 	getEventData = async () => {
 		let id = this.props.match.params.id;
 		const { data } = await axios.get(
-			`http://localhost:8000/api/event/${id}`,
+			`/api/event/${id}`,
 		);
 		const {
 			event_Name,
