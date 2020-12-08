@@ -11,6 +11,7 @@ import Radio from '../ controls/Radio';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import API from '../../services/api';
 import { loadcategory } from '../../redux/actions/category';
 // categoryName: {
 // 		type: String,
@@ -44,10 +45,7 @@ class CategoryForm extends React.Component {
 			},
 		};
 		try {
-			const response = await axios.post(
-				'http://localhost:8000/api/catagory',
-				body,
-			);
+			const response = await API.post('/catagory', body);
 			if (response.status === 200) {
 				this.props.loadcategory();
 			}

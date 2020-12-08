@@ -49,10 +49,15 @@ export const loginuser = (user) => async (dispatch) => {
 };
 
 export const loaduser = () => async (dispatch) => {
-	let token = localStorage.getItem('token');
-	if (!token) return dispatch({ type: LOGINFAIL });
+	try {
+		let token = localStorage.getItem('token');
+		if (!token) return dispatch({ type: LOGINFAIL });
 
-	setAuthToken(token);
-	const response = await API.get('/auth');
-	dispatch({ type: LOADUSER, payload: response.data });
+		setAuthToken(token);
+		const response = await API.get('/auth');
+
+		dispatch({ type: LOADUSER, payload: response.data });
+	} catch (error) {
+		dispatch({ type: LOGINFAIL });
+	}
 };
