@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { addevent, updateevent } from '../../redux/actions/event';
 import { loadcategory } from '../../redux/actions/category';
+import API from '../../services/api';
 class EventForm extends React.Component {
 	state = {
 		event: {
@@ -58,7 +59,10 @@ class EventForm extends React.Component {
 		);
 
 		this.setState({ event_category: category[0]._id });
-		const validate = validateEventForm({ event_category: e.target.value });
+		const validate = validateEventForm({
+			event_category: e.target.value,
+			...this.state.event,
+		});
 
 		if (validate) {
 			const errors = this.state.errors;
@@ -96,9 +100,7 @@ class EventForm extends React.Component {
 	};
 	getEventData = async () => {
 		let id = this.props.match.params.id;
-		const { data } = await axios.get(
-			`/api/event/${id}`,
-		);
+		const { data } = await API.get(`/event/${id}`);
 		const {
 			event_Name,
 			event_Description,
